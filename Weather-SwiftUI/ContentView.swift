@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            BackgroundView(isNight: $isNight)
+            BackgroundView(isNight: isNight)
             
             VStack{
                 CityTextView(cityName: "Cupretino, CA")
@@ -44,7 +44,7 @@ struct ContentView: View {
                 Button{//action
                     isNight.toggle()
                 }label: {
-                    WeatherButton(title: "Change Day Time", TextColor: isNight ? .black : .blue, backgroundColor: .white)
+                    WeatherButton(title: "Change Day Time", TextColor: isNight ? .black : .blue, backgroundColor: .yellow)
                 }
                 Spacer()
             }
@@ -69,8 +69,10 @@ struct WeatherDayView: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.white)
             Image(systemName:  imageName)
-                .renderingMode(.original)
+//                .symbolRenderingMode(.palette)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
+//                .foregroundStyle(.pink, .orange, .green)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
             Text("\(temprature)°")
@@ -81,13 +83,19 @@ struct WeatherDayView: View {
 }
 
 struct BackgroundView: View {
-    @Binding var isNight: Bool
-    
+    //use binding if you will change the value in the subview, if you will just read the value then you don't need to use binding
+//    @Binding var isNight: Bool
+    var isNight: Bool
     var body: some View {
+        //more customized gradient
         LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue,  isNight ? .gray : Color("lightBlue")]),
                        startPoint: .topLeading,
                        endPoint: .bottomTrailing)
         .ignoresSafeArea()
+        //New gradient modiire
+//        ContainerRelativeShape()
+//            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
+//            .ignoresSafeArea()
     }
 }
 
