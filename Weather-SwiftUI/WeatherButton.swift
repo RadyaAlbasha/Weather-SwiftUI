@@ -22,3 +22,7 @@ struct WeatherButton: View {
             .cornerRadius(10)
     }
 }
+
+#Preview {
+    WeatherButton(title: "Test Title", TextColor: .white, backgroundColor: .blue)
+}
