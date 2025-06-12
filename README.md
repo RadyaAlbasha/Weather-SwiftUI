@@ -1,3 +1,3 @@
 # Weather-SwiftUI
-SwiftUI Demo
+SwiftUI Demo<br />
 Please check the DemoImages folder
